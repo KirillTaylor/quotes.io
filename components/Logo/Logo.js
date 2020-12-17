@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-const Logo = () => {
+const Logo = (props) => {
 	return (
 		<div className="Logo">
-			<Link href="/"><a>Quotes.io</a></Link>
+			<Link href="/"><a title={props.title}>{props.title}</a></Link>
 		</div>
 	);
 }

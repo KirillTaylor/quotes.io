@@ -1,0 +1,19 @@
+.refreshSign{
+	display: inline-block;
+}
+.animationRotate{
+	animation: rotate 1s linear infinite;
+	color: #dedede;
+}
+.refresh{
+	cursor: pointer;
+}
+.loading{
+	color: #dedede;
+}
+
+@keyframes rotate{
+	100% {
+		transform: rotate(180deg);
+	}
+}
