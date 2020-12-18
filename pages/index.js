@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import Logo from '../components/Logo/Logo'
 import Refresh from '../components/Refresh/Refresh'
 import { useEffect, useState } from 'react'
+import { useSwipeable } from 'react-swipeable'
 
 
 export default function Home() {
@@ -10,6 +11,8 @@ export default function Home() {
   const [ quote, setQuote ] = useState({});
 
   const title = 'Quotes.smaw.io';
+
+  const currentDate = new Date();
 
   const retreiveAQuote = (id) => {
     fetch(id ? `/api/quote/${id}` : '/api/quote')
@@ -37,6 +40,13 @@ export default function Home() {
     }
   });
 
+  const swipeHandlers = useSwipeable({
+    onSwiped: (ev) => {
+      setIsLoading(true);
+      retreiveAQuote();
+    }
+  })
+
   return (
     <div className={styles.container}>
       <Head>
@@ -47,8 +57,10 @@ export default function Home() {
         <Logo title={title} />
         <Refresh callback={handleRefreshClick} isLoading={isLoading} />
       </header>
-
-      <main className={styles.main}>
+      <div className={[styles.mobile, styles.mobileTooltip].join(" ")}>
+          Swipe <i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> for new quotes
+      </div>
+      <main className={styles.main} {...swipeHandlers}>
         <div id={styles.the_quote}>
           {quote.text}
         </div>
@@ -57,9 +69,9 @@ export default function Home() {
         </div>
       </main>
 
-      <footer>
+      <footer className={styles.footer}>
         <div id={styles.copyright}>
-          All rights reserved &copy; 2020
+          All rights reserved to <a href="#">Kirill Taylor</a> &copy; {currentDate.getFullYear()}
         </div>
       </footer>
     </div>
