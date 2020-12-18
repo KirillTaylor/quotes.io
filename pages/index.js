@@ -9,7 +9,7 @@ export default function Home() {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ quote, setQuote ] = useState({});
 
-  const title = 'Quotes.io';
+  const title = 'Quotes.smaw.io';
 
   const retreiveAQuote = (id) => {
     fetch(id ? `/api/quote/${id}` : '/api/quote')
