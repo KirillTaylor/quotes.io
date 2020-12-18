@@ -58,7 +58,7 @@ export default function Home() {
         <Refresh callback={handleRefreshClick} isLoading={isLoading} />
       </header>
       <div className={[styles.mobile, styles.mobileTooltip].join(" ")}>
-          Swipe <i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> for new quotes
+          Swipe <i className="fas fa-arrow-left"></i> <i className="fas fa-arrow-right"></i> for new quotes
       </div>
       <main className={styles.main} {...swipeHandlers}>
         <div id={styles.the_quote}>
