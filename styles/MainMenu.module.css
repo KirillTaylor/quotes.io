@@ -1,0 +1,19 @@
+.mobile_menu{
+
+}
+
+.mobile_menu ul{
+	transition: all .3s ease;
+	position: absolute;
+	left: -400px;
+	background-color: #fff;
+	flex-direction: column;
+	top: 101%;
+	box-shadow: 0 0 7px -1px #dedede;
+}
+.menuOpen{
+	left: 0 !important;
+}
+.mobile_menu ul li{
+	padding: 2vh;
+}

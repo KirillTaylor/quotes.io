@@ -14,3 +14,28 @@ a {
 * {
   box-sizing: border-box;
 }
+
+ul{
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: space-around;
+  gap: 15px;
+}
+ul li:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.mobile{
+  display: none;
+}
+@media (max-width:700px){
+  .mobile{
+    display: block;
+  }
+  .desktop{
+    display: none;
+  }
+}

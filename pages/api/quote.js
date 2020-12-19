@@ -18,6 +18,7 @@ export default function handler(req, res) {
 	res.send(JSON.stringify({
 		text: message.text,
 		first_name: message.from.first_name,
-		year: date.getFullYear() - 1
+		year: date.getFullYear() - 1,
+		profilePhoto: message.from.profilePicture
 	}));
   }

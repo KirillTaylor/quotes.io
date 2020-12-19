@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Logo from '../components/Logo/Logo'
-import Refresh from '../components/Refresh/Refresh'
 import { useEffect, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 
 export default function Home() {
@@ -11,8 +11,6 @@ export default function Home() {
   const [ quote, setQuote ] = useState({});
 
   const title = 'Quotes.smaw.io';
-
-  const currentDate = new Date();
 
   const retreiveAQuote = (id) => {
     fetch(id ? `/api/quote/${id}` : '/api/quote')
@@ -47,20 +45,30 @@ export default function Home() {
     }
   })
 
+  const headerProps = {
+    callback: handleRefreshClick,
+    title: title,
+    isLoading: isLoading,
+    styleHeader: styles.header
+  }
+
+  console.log(quote);
+
   return (
     <div className={styles.container}>
       <Head>
         <title>{title}</title>
       </Head>
 
-      <header className={styles.header}>
-        <Logo title={title} />
-        <Refresh callback={handleRefreshClick} isLoading={isLoading} />
-      </header>
+      <Header {...headerProps}/>
+
       <div className={[styles.mobile, styles.mobileTooltip].join(" ")}>
           Swipe <i className="fas fa-arrow-left"></i> <i className="fas fa-arrow-right"></i> for new quotes
       </div>
       <main className={styles.main} {...swipeHandlers}>
+        {quote.profilePhoto ? <div className={styles.quote_picture}>
+          <img src={'/images/' + quote.profilePhoto} />
+        </div> : null}
         <div id={styles.the_quote}>
           {quote.text}
         </div>
@@ -69,11 +77,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <div id={styles.copyright}>
-          All rights reserved to <a href="#">Kirill Taylor</a> &copy; {currentDate.getFullYear()}
-        </div>
-      </footer>
+      <Footer {...styles} />
     </div>
   )
 }
